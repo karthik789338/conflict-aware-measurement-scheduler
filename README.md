@@ -1,158 +1,73 @@
-<p align="left">
-  <img src="https://komarev.com/ghpvc/?username=karthik789338&label=Profile%20views&color=0e75b6&style=flat" alt="karthik789338" />
-</p>
+# Network Measurement Scheduler
 
-<h1 align="center">Conflict-Aware Measurement Scheduler</h1>
-<h3 align="center">A simple Python implementation of heuristic bin packing for regulated network measurement scheduling</h3>
+> Implementation of a conflict‑aware measurement scheduler inspired by Calyam et al., “OnTimeMeasure: A Scalable Framework for Scheduling Active Measurements” (IEEE E2EMON 2005).  
+> https://ieeexplore.ieee.org/abstract/document/1564471
 
-<p align="center">
-  <a href="https://karthikadari.com/" target="_blank">
-    <img src="https://img.shields.io/badge/Portfolio-karthikadari.com-111?style=for-the-badge&logo=vercel&logoColor=white" />
-  </a>
-  <a href="https://ieeexplore.ieee.org/abstract/document/1564471" target="_blank">
-    <img src="https://img.shields.io/badge/Research%20Paper-OnTimeMeasure-blue?style=for-the-badge&logo=readme&logoColor=white" />
-  </a>
-  <a href="https://github.com/karthik789338/conflict-aware-measurement-scheduler" target="_blank">
-    <img src="https://img.shields.io/github/stars/karthik789338/conflict-aware-measurement-scheduler?style=for-the-badge" />
-  </a>
-  <a href="https://github.com/karthik789338/conflict-aware-measurement-scheduler" target="_blank">
-    <img src="https://img.shields.io/github/forks/karthik789338/conflict-aware-measurement-scheduler?style=for-the-badge" />
-  </a>
-</p>
+## 🌟 Highlights
 
-<p align="center">
-  This repository contains a small and practical implementation of the scheduling idea from the
-  <b>OnTimeMeasure</b> paper. The code builds conflict-aware daily timetables for measurement tasks,
-  respects MLA limits, and compares heuristic bin packing against a round-robin baseline.
-</p>
+- Schedules active measurement tasks into fixed‑size time bins without violating tool conflicts or MLA constraints.  
+- Implements both heuristic bin‑packing and round‑robin schemes and reports cycle times for each.  
+- Generates a daily timetable over 24 hours for any valid input JSON describing tasks, conflicts, and measurement parameters.  
+- Includes a bin‑size analysis to show how cycle time changes with different bin sizes.  
 
----
+## ℹ️ Overview
 
-## What this project does
+This project implements a simple scheduler for active network measurements based on the ideas in the OnTimeMeasure framework. The goal is to assign measurement tasks to time bins in a way that avoids conflicting tests running together, respects a measurement level agreement (MLA) on how many jobs can run in parallel, and keeps the overall cycle time as small as possible.
 
-The scheduler places network measurement tasks into fixed time bins while following two simple rules:
+The input is a JSON file that lists measurement tasks (source, destination, tool, duration), a task conflict graph, a bin size, an MLA value, and optional settings for how long to schedule and which bin sizes to analyze. The script reads this input, builds both a heuristic bin‑packing schedule and a round‑robin schedule, prints a human‑readable summary to the console, and can write a detailed JSON output with per‑job schedules.
 
-- tasks that conflict cannot share the same bin
-- the number of tasks inside a bin cannot exceed the MLA value
+### ✍️ Authors
 
-It compares:
+This code and report were written as part of a research assistant hiring exercise based on the work of Prasad Calyam and collaborators on OnTimeMeasure and conflict‑free active measurement scheduling. The implementation is kept straightforward on purpose so that task definitions, conflict relationships, and scheduling parameters can be changed easily for testing.
 
-- **Round-robin scheduling**: one task per bin
-- **Heuristic bin packing**: place each task into the earliest valid bin
+## 🚀 Usage
 
-The main metric is **cycle time**, which is the time needed to finish one full round of all tasks.
+### Command‑line
 
----
+From the project directory:
 
-## Files
-
-- `scheduler.py` - main program
-- `input.json` - base example
-- `sample_input1.json` - denser conflict case
-- `sample_input2.json` - lighter conflict case
-- `output_*.txt` - saved console outputs
-- `output_*.json` - saved structured outputs
-
----
-
-## Input format
-
-Each input file is a JSON file like this:
-
-```json
-{
-  "tasks": [
-    {
-      "task_id": "tau1",
-      "source": "S1",
-      "destination": "S2",
-      "tool": "Pathchar",
-      "duration": 20
-    }
-  ],
-  "conflicts": [
-    ["tau1", "tau2"]
-  ],
-  "bin_size": 20,
-  "mla": 2,
-  "horizon_minutes": 1440,
-  "analysis_bin_sizes": [10, 15, 20, 25, 30, 40, 60]
-}
-```
-
----
-
-## How to run
-
-Open CMD in the project folder and run:
-
-```bat
+```bash
 python scheduler.py --input input.json --output output_input.json
 ```
 
-To save the console output too:
+Example runs (using the sample files in this folder):
 
-```bat
-python scheduler.py --input input.json --output output_input.json > output_input.txt
-```
+```bash
+# 4‑task example from the hiring sheet
+python scheduler.py --input input.json --output output_input.json
 
-For the other two test files:
-
-```bat
+# 6‑task example 1
 python scheduler.py --input sample_input1.json --output output_sample1.json
-python scheduler.py --input sample_input1.json --output output_sample1.json > output_sample1.txt
 
+# 6‑task example 2
 python scheduler.py --input sample_input2.json --output output_sample2.json
-python scheduler.py --input sample_input2.json --output output_sample2.json > output_sample2.txt
 ```
 
----
+Each run prints:
 
-## Verified results
+- A **conflict map** table (X means two tasks cannot share a bin).  
+- A **heuristic schedule** summary: bins used, cycle time, jobs per cycle, cycles and jobs in 24 hours, and the one‑cycle timetable.  
+- A **round‑robin schedule** summary with the same fields for comparison.  
+- A **bin size analysis** table showing, for several bin sizes, the cycle time under each scheme and the time saved by the heuristic.  
 
-### `input.json`
-- Heuristic cycle time: **40 minutes**
-- Round-robin cycle time: **80 minutes**
-- Savings: **40 minutes**
-- Economy: **50.0%**
+The JSON output (if `--output` is given) contains the original input plus structured details for both schemes and the bin‑size analysis.
 
-### `sample_input1.json`
-- Heuristic cycle time: **80 minutes**
-- Round-robin cycle time: **120 minutes**
-- Savings: **40 minutes**
-- Economy: **33.3%**
+## ⬇️ Installation
 
-### `sample_input2.json`
-- Heuristic cycle time: **40 minutes**
-- Round-robin cycle time: **120 minutes**
-- Savings: **80 minutes**
-- Economy: **66.7%**
+The scheduler is a single Python 3 script with only standard library dependencies (`argparse`, `json`, `math`). To run it:
 
----
+1. Make sure Python 3 is installed and on your PATH.  
+2. Place `scheduler.py` and your input JSON files in the same directory.  
+3. Run the commands shown in the usage section from a terminal.  
 
-## Notes
+No external packages or cloud services are required for this version. In a real deployment, the same logic could be run as a cron job or service on a GCP Compute Engine instance, writing schedules and measurement results to Cloud Storage or a database.
 
-This implementation focuses on the scheduling core of the problem.
+## 💭 Feedback and Contributing
 
-It does **not** try to implement the full framework from the paper, such as:
+This script is meant to be easy to read and modify. The main extension points are:
 
-- automatic tool-conflict graph generation
-- automatic link-conflict graph generation
-- custom scripting language support
-- server-specific cron orchestration
+- Changing or extending the JSON schema for tasks and conflicts.  
+- Adding more metrics to the summary (for example, collision counts or bandwidth usage).  
+- Experimenting with different heuristic strategies (first‑fit vs. best‑fit, different bin ordering, and so on).  
 
-Instead, it assumes that the final conflict relationships are given in the input file. That keeps the program easy to test and matches the hiring task requirement to avoid hard coding.
-
----
-
-## Requirements
-
-- Python 3.9 or newer
-- no external libraries required
-
----
-
-## Author
-
-**Karthik Adari**  
-Founder • Data Engineer / Applied ML • GCP/AWS • GenAI
+For review, the most useful feedback would be on the clarity of the scheduling logic, the choice of data structures, and how well the code reflects the OnTimeMeasure design.
