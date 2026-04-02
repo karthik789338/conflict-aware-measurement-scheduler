@@ -33,13 +33,10 @@ python scheduler.py --input input.json --output output_input.json
 Example runs (using the sample files in this folder):
 
 ```bash
-# 4‑task example from the hiring sheet
 python scheduler.py --input input.json --output output_input.json
 
-# 6‑task example 1
 python scheduler.py --input sample_input1.json --output output_sample1.json
 
-# 6‑task example 2
 python scheduler.py --input sample_input2.json --output output_sample2.json
 ```
 
