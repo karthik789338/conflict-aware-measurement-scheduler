@@ -18,7 +18,7 @@ The input is a JSON file that lists measurement tasks (source, destination, tool
 
 ### ✍️ Authors
 
-This code and report were written as part of a research assistant hiring exercise based on the work of Prasad Calyam and collaborators on OnTimeMeasure and conflict‑free active measurement scheduling. The implementation is kept straightforward on purpose so that task definitions, conflict relationships, and scheduling parameters can be changed easily for testing.
+This code and report were written as part of a research assistant hiring exercise based on the work of Prof. Prasad Calyam and collaborators on OnTimeMeasure and conflict‑free active measurement scheduling. The implementation is kept straightforward on purpose so that task definitions, conflict relationships, and scheduling parameters can be changed easily for testing.
 
 ## 🚀 Usage
 
