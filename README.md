@@ -1,6 +1,6 @@
 # Network Measurement Scheduler
 
-> Implementation of a conflict‑aware measurement scheduler inspired by Calyam et al., “OnTimeMeasure: A Scalable Framework for Scheduling Active Measurements” (IEEE E2EMON 2005).  
+> Implementation of a conflict‑aware measurement scheduler inspired by Prof. Calyam et al., “OnTimeMeasure: A Scalable Framework for Scheduling Active Measurements” (IEEE E2EMON 2005).  
 > https://ieeexplore.ieee.org/abstract/document/1564471
 
 ## 🌟 Highlights
