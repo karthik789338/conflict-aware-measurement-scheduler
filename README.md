@@ -67,4 +67,4 @@ This script is meant to be easy to read and modify. The main extension points ar
 - Adding more metrics to the summary (for example, collision counts or bandwidth usage).  
 - Experimenting with different heuristic strategies (first‑fit vs. best‑fit, different bin ordering, and so on).  
 
-For review, the most useful feedback would be on the clarity of the scheduling logic, the choice of data structures, and how well the code reflects the OnTimeMeasure design.
+For review, the most useful feedback would be on the clarity of the scheduling logic, the choice of data structures, and how well the code reflects the OnTimeMeasure design!
