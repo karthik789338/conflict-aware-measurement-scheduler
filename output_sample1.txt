@@ -1,0 +1,53 @@
+
+CONFLICT MAP (X = cannot share a bin)
+------------------------------------------------------------------------
+              tau1      tau2      tau3      tau4      tau5      tau6
+  tau1              -         X         X         .         .         X
+  tau2              X         -         .         X         X         .
+  tau3              X         .         -         X         .         .
+  tau4              .         X         X         -         X         .
+  tau5              .         X         .         X         -         X
+  tau6              X         .         .         .         X         -
+
+HEURISTIC SCHEDULE
+------------------------------------------------------------------------
+Bins used        : 4
+Cycle time       : 80 minutes
+Jobs per cycle   : 6
+Cycles in 24 hrs : 18
+Jobs in 24 hrs   : 108
+
+Cycle schedule
+  Bin  1 |   tau1 | Pathchar     | S1 -> S2 | 00:00 - 00:20
+  Bin  1 |   tau4 | Iperf        | S4 -> S5 | 00:00 - 00:10
+  Bin  2 |   tau2 | Iperf        | S2 -> S3 | 00:20 - 00:35
+  Bin  2 |   tau3 | H323Beacon   | S3 -> S4 | 00:20 - 00:35
+  Bin  3 |   tau5 | OWAMP        | S5 -> S6 | 00:40 - 00:50
+  Bin  4 |   tau6 | Ping         | S6 -> S1 | 01:00 - 01:05
+
+ROUND_ROBIN SCHEDULE
+------------------------------------------------------------------------
+Bins used        : 6
+Cycle time       : 120 minutes
+Jobs per cycle   : 6
+Cycles in 24 hrs : 12
+Jobs in 24 hrs   : 72
+
+Cycle schedule
+  Bin  1 |   tau1 | Pathchar     | S1 -> S2 | 00:00 - 00:20
+  Bin  2 |   tau2 | Iperf        | S2 -> S3 | 00:20 - 00:35
+  Bin  3 |   tau3 | H323Beacon   | S3 -> S4 | 00:40 - 00:55
+  Bin  4 |   tau4 | Iperf        | S4 -> S5 | 01:00 - 01:10
+  Bin  5 |   tau5 | OWAMP        | S5 -> S6 | 01:20 - 01:30
+  Bin  6 |   tau6 | Ping         | S6 -> S1 | 01:40 - 01:45
+
+BIN SIZE ANALYSIS
+------------------------------------------------------------------------
+   bin     heuristic   round-robin     saved   economy
+    10  invalid -- Task tau1 has duration 20, which is bigger than bin_size 10.
+    15  invalid -- Task tau1 has duration 20, which is bigger than bin_size 15.
+    20         80 min        120 min     40 min     33.3%
+    25        100 min        150 min     50 min     33.3%
+    30        120 min        180 min     60 min     33.3%
+    40        160 min        240 min     80 min     33.3%
+    60        240 min        360 min    120 min     33.3%
