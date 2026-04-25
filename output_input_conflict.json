@@ -1,0 +1,173 @@
+{
+  "tasks": [
+    "tau1",
+    "tau2",
+    "tau3",
+    "tau4"
+  ],
+  "mla": 2,
+  "bin_size": 20,
+  "edge_groups": [
+    {
+      "edge_count": 0,
+      "total_combinations": 1,
+      "cycle_time_groups": [
+        {
+          "cycle_time_min": 40,
+          "cases": [
+            "(none)"
+          ]
+        }
+      ]
+    },
+    {
+      "edge_count": 1,
+      "total_combinations": 6,
+      "cycle_time_groups": [
+        {
+          "cycle_time_min": 40,
+          "cases": [
+            "tau1-tau2",
+            "tau1-tau3",
+            "tau1-tau4",
+            "tau2-tau3",
+            "tau3-tau4"
+          ]
+        },
+        {
+          "cycle_time_min": 60,
+          "cases": [
+            "tau2-tau4"
+          ]
+        }
+      ]
+    },
+    {
+      "edge_count": 2,
+      "total_combinations": 15,
+      "cycle_time_groups": [
+        {
+          "cycle_time_min": 40,
+          "cases": [
+            "tau1-tau2, tau1-tau3",
+            "tau1-tau2, tau1-tau4",
+            "tau1-tau2, tau2-tau3",
+            "tau1-tau2, tau3-tau4",
+            "tau1-tau3, tau1-tau4",
+            "tau1-tau3, tau2-tau3",
+            "tau1-tau3, tau2-tau4",
+            "tau1-tau4, tau2-tau3",
+            "tau1-tau4, tau3-tau4",
+            "tau2-tau3, tau3-tau4"
+          ]
+        },
+        {
+          "cycle_time_min": 60,
+          "cases": [
+            "tau1-tau2, tau2-tau4",
+            "tau1-tau3, tau3-tau4",
+            "tau1-tau4, tau2-tau4",
+            "tau2-tau3, tau2-tau4",
+            "tau2-tau4, tau3-tau4"
+          ]
+        }
+      ]
+    },
+    {
+      "edge_count": 3,
+      "total_combinations": 20,
+      "cycle_time_groups": [
+        {
+          "cycle_time_min": 40,
+          "cases": [
+            "tau1-tau2, tau1-tau3, tau2-tau4",
+            "tau1-tau2, tau1-tau3, tau3-tau4",
+            "tau1-tau2, tau1-tau4, tau2-tau3",
+            "tau1-tau2, tau1-tau4, tau3-tau4",
+            "tau1-tau2, tau2-tau3, tau3-tau4",
+            "tau1-tau3, tau1-tau4, tau2-tau3",
+            "tau1-tau3, tau1-tau4, tau2-tau4",
+            "tau1-tau3, tau2-tau3, tau2-tau4",
+            "tau1-tau4, tau2-tau3, tau3-tau4"
+          ]
+        },
+        {
+          "cycle_time_min": 60,
+          "cases": [
+            "tau1-tau2, tau1-tau3, tau1-tau4",
+            "tau1-tau2, tau1-tau3, tau2-tau3",
+            "tau1-tau2, tau1-tau4, tau2-tau4",
+            "tau1-tau2, tau2-tau3, tau2-tau4",
+            "tau1-tau2, tau2-tau4, tau3-tau4",
+            "tau1-tau3, tau1-tau4, tau3-tau4",
+            "tau1-tau3, tau2-tau3, tau3-tau4",
+            "tau1-tau3, tau2-tau4, tau3-tau4",
+            "tau1-tau4, tau2-tau3, tau2-tau4",
+            "tau1-tau4, tau2-tau4, tau3-tau4",
+            "tau2-tau3, tau2-tau4, tau3-tau4"
+          ]
+        }
+      ]
+    },
+    {
+      "edge_count": 4,
+      "total_combinations": 15,
+      "cycle_time_groups": [
+        {
+          "cycle_time_min": 40,
+          "cases": [
+            "tau1-tau2, tau1-tau3, tau2-tau4, tau3-tau4",
+            "tau1-tau2, tau1-tau4, tau2-tau3, tau3-tau4",
+            "tau1-tau3, tau1-tau4, tau2-tau3, tau2-tau4"
+          ]
+        },
+        {
+          "cycle_time_min": 60,
+          "cases": [
+            "tau1-tau2, tau1-tau3, tau1-tau4, tau2-tau3",
+            "tau1-tau2, tau1-tau3, tau1-tau4, tau2-tau4",
+            "tau1-tau2, tau1-tau3, tau1-tau4, tau3-tau4",
+            "tau1-tau2, tau1-tau3, tau2-tau3, tau2-tau4",
+            "tau1-tau2, tau1-tau3, tau2-tau3, tau3-tau4",
+            "tau1-tau2, tau1-tau4, tau2-tau3, tau2-tau4",
+            "tau1-tau2, tau1-tau4, tau2-tau4, tau3-tau4",
+            "tau1-tau2, tau2-tau3, tau2-tau4, tau3-tau4",
+            "tau1-tau3, tau1-tau4, tau2-tau3, tau3-tau4",
+            "tau1-tau3, tau1-tau4, tau2-tau4, tau3-tau4",
+            "tau1-tau3, tau2-tau3, tau2-tau4, tau3-tau4",
+            "tau1-tau4, tau2-tau3, tau2-tau4, tau3-tau4"
+          ]
+        }
+      ]
+    },
+    {
+      "edge_count": 5,
+      "total_combinations": 6,
+      "cycle_time_groups": [
+        {
+          "cycle_time_min": 60,
+          "cases": [
+            "tau1-tau2, tau1-tau3, tau1-tau4, tau2-tau3, tau2-tau4",
+            "tau1-tau2, tau1-tau3, tau1-tau4, tau2-tau3, tau3-tau4",
+            "tau1-tau2, tau1-tau3, tau1-tau4, tau2-tau4, tau3-tau4",
+            "tau1-tau2, tau1-tau3, tau2-tau3, tau2-tau4, tau3-tau4",
+            "tau1-tau2, tau1-tau4, tau2-tau3, tau2-tau4, tau3-tau4",
+            "tau1-tau3, tau1-tau4, tau2-tau3, tau2-tau4, tau3-tau4"
+          ]
+        }
+      ]
+    },
+    {
+      "edge_count": 6,
+      "total_combinations": 1,
+      "cycle_time_groups": [
+        {
+          "cycle_time_min": 80,
+          "cases": [
+            "tau1-tau2, tau1-tau3, tau1-tau4, tau2-tau3, tau2-tau4, tau3-tau4"
+          ]
+        }
+      ]
+    }
+  ]
+}

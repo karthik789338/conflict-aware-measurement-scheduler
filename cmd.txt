@@ -1,0 +1,146 @@
+C:\Users\karth\Desktop\calyam sir\final files\conflict aware>python scheduler.py --input input.json --output output_input.json --conflict-analysis
+
+CONFLICT MAP (X = cannot share a bin)
+------------------------------------------------------------------------
+              tau1      tau2      tau3      tau4
+  tau1              -         X         .         X
+  tau2              X         -         X         .
+  tau3              .         X         -         X
+  tau4              X         .         X         -
+
+HEURISTIC SCHEDULE
+------------------------------------------------------------------------
+Bins used        : 2
+Cycle time       : 40 minutes
+Jobs per cycle   : 4
+Cycles in 24 hrs : 36
+Jobs in 24 hrs   : 144
+
+Cycle schedule
+  Bin  1 |   tau1 | Pathchar     | S1 -> S2 | 00:00 - 00:20
+  Bin  1 |   tau3 | H323Beacon   | S3 -> S5 | 00:00 - 00:20
+  Bin  2 |   tau2 | Iperf        | S2 -> S3 | 00:20 - 00:30
+  Bin  2 |   tau4 | Iperf        | S5 -> S1 | 00:20 - 00:30
+
+ROUND_ROBIN SCHEDULE
+------------------------------------------------------------------------
+Bins used        : 4
+Cycle time       : 80 minutes
+Jobs per cycle   : 4
+Cycles in 24 hrs : 18
+Jobs in 24 hrs   : 72
+
+Cycle schedule
+  Bin  1 |   tau1 | Pathchar     | S1 -> S2 | 00:00 - 00:20
+  Bin  2 |   tau3 | H323Beacon   | S3 -> S5 | 00:20 - 00:40
+  Bin  3 |   tau2 | Iperf        | S2 -> S3 | 00:40 - 00:50
+  Bin  4 |   tau4 | Iperf        | S5 -> S1 | 01:00 - 01:10
+
+BIN SIZE ANALYSIS
+------------------------------------------------------------------------
+   bin     heuristic   round-robin     saved   economy
+    10  invalid -- Task tau1 has duration 20, which is bigger than bin_size 10.
+    15  invalid -- Task tau1 has duration 20, which is bigger than bin_size 15.
+    20         40 min         80 min     40 min     50.0%
+    25         50 min        100 min     50 min     50.0%
+    30         60 min        120 min     60 min     50.0%
+    40         80 min        160 min     80 min     50.0%
+    60        120 min        240 min    120 min     50.0%
+
+CONFLICT FACTOR ANALYSIS (bin_size=20, mla from input)
+------------------------------------------------------------------------
+Tasks        : tau1, tau2, tau3, tau4
+Total possible edges : 6
+MLA          : 2
+
+Edge count: 0  (1 combination)
+  All combinations -> 40 min cycle time
+    (none)
+
+Edge count: 1  (6 combinations)
+  -> 40 min cycle time  (5 cases)
+    tau1-tau2
+    tau1-tau3
+    tau1-tau4
+    tau2-tau3
+    tau3-tau4
+  -> 60 min cycle time  (1 case)
+    tau2-tau4
+
+Edge count: 2  (15 combinations)
+  -> 40 min cycle time  (10 cases)
+    tau1-tau2, tau1-tau3
+    tau1-tau2, tau1-tau4
+    tau1-tau2, tau2-tau3
+    tau1-tau2, tau3-tau4
+    tau1-tau3, tau1-tau4
+    tau1-tau3, tau2-tau3
+    tau1-tau3, tau2-tau4
+    tau1-tau4, tau2-tau3
+    tau1-tau4, tau3-tau4
+    tau2-tau3, tau3-tau4
+  -> 60 min cycle time  (5 cases)
+    tau1-tau2, tau2-tau4
+    tau1-tau3, tau3-tau4
+    tau1-tau4, tau2-tau4
+    tau2-tau3, tau2-tau4
+    tau2-tau4, tau3-tau4
+
+Edge count: 3  (20 combinations)
+  -> 40 min cycle time  (9 cases)
+    tau1-tau2, tau1-tau3, tau2-tau4
+    tau1-tau2, tau1-tau3, tau3-tau4
+    tau1-tau2, tau1-tau4, tau2-tau3
+    tau1-tau2, tau1-tau4, tau3-tau4
+    tau1-tau2, tau2-tau3, tau3-tau4
+    tau1-tau3, tau1-tau4, tau2-tau3
+    tau1-tau3, tau1-tau4, tau2-tau4
+    tau1-tau3, tau2-tau3, tau2-tau4
+    tau1-tau4, tau2-tau3, tau3-tau4
+  -> 60 min cycle time  (11 cases)
+    tau1-tau2, tau1-tau3, tau1-tau4
+    tau1-tau2, tau1-tau3, tau2-tau3
+    tau1-tau2, tau1-tau4, tau2-tau4
+    tau1-tau2, tau2-tau3, tau2-tau4
+    tau1-tau2, tau2-tau4, tau3-tau4
+    tau1-tau3, tau1-tau4, tau3-tau4
+    tau1-tau3, tau2-tau3, tau3-tau4
+    tau1-tau3, tau2-tau4, tau3-tau4
+    tau1-tau4, tau2-tau3, tau2-tau4
+    tau1-tau4, tau2-tau4, tau3-tau4
+    tau2-tau3, tau2-tau4, tau3-tau4
+
+Edge count: 4  (15 combinations)
+  -> 40 min cycle time  (3 cases)
+    tau1-tau2, tau1-tau3, tau2-tau4, tau3-tau4
+    tau1-tau2, tau1-tau4, tau2-tau3, tau3-tau4
+    tau1-tau3, tau1-tau4, tau2-tau3, tau2-tau4
+  -> 60 min cycle time  (12 cases)
+    tau1-tau2, tau1-tau3, tau1-tau4, tau2-tau3
+    tau1-tau2, tau1-tau3, tau1-tau4, tau2-tau4
+    tau1-tau2, tau1-tau3, tau1-tau4, tau3-tau4
+    tau1-tau2, tau1-tau3, tau2-tau3, tau2-tau4
+    tau1-tau2, tau1-tau3, tau2-tau3, tau3-tau4
+    tau1-tau2, tau1-tau4, tau2-tau3, tau2-tau4
+    tau1-tau2, tau1-tau4, tau2-tau4, tau3-tau4
+    tau1-tau2, tau2-tau3, tau2-tau4, tau3-tau4
+    tau1-tau3, tau1-tau4, tau2-tau3, tau3-tau4
+    tau1-tau3, tau1-tau4, tau2-tau4, tau3-tau4
+    tau1-tau3, tau2-tau3, tau2-tau4, tau3-tau4
+    tau1-tau4, tau2-tau3, tau2-tau4, tau3-tau4
+
+Edge count: 5  (6 combinations)
+  All combinations -> 60 min cycle time
+    tau1-tau2, tau1-tau3, tau1-tau4, tau2-tau3, tau2-tau4
+    tau1-tau2, tau1-tau3, tau1-tau4, tau2-tau3, tau3-tau4
+    tau1-tau2, tau1-tau3, tau1-tau4, tau2-tau4, tau3-tau4
+    tau1-tau2, tau1-tau3, tau2-tau3, tau2-tau4, tau3-tau4
+    tau1-tau2, tau1-tau4, tau2-tau3, tau2-tau4, tau3-tau4
+    tau1-tau3, tau1-tau4, tau2-tau3, tau2-tau4, tau3-tau4
+
+Edge count: 6  (1 combination)
+  All combinations -> 80 min cycle time
+    tau1-tau2, tau1-tau3, tau1-tau4, tau2-tau3, tau2-tau4, tau3-tau4
+
+
+C:\Users\karth\Desktop\calyam sir\final files\conflict aware>

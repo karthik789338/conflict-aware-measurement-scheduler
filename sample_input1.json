@@ -1,0 +1,24 @@
+{
+  "tasks": [
+    {"task_id": "tau1", "source": "S1", "destination": "S2", "tool": "Pathchar", "duration": 20},
+    {"task_id": "tau2", "source": "S2", "destination": "S3", "tool": "Iperf", "duration": 15},
+    {"task_id": "tau3", "source": "S3", "destination": "S4", "tool": "H323Beacon", "duration": 15},
+    {"task_id": "tau4", "source": "S4", "destination": "S5", "tool": "Iperf", "duration": 10},
+    {"task_id": "tau5", "source": "S5", "destination": "S6", "tool": "OWAMP", "duration": 10},
+    {"task_id": "tau6", "source": "S6", "destination": "S1", "tool": "Ping", "duration": 5}
+  ],
+  "conflicts": [
+    ["tau1", "tau2"],
+    ["tau1", "tau3"],
+    ["tau1", "tau6"],
+    ["tau2", "tau4"],
+    ["tau2", "tau5"],
+    ["tau3", "tau4"],
+    ["tau4", "tau5"],
+    ["tau5", "tau6"]
+  ],
+  "bin_size": 20,
+  "mla": 2,
+  "horizon_minutes": 1440,
+  "analysis_bin_sizes": [10, 15, 20, 25, 30, 40, 60]
+}
